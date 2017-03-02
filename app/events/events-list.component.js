@@ -9,28 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var events_app_components_1 = require('./events-app.components');
-var events_list_component_1 = require('./events/events-list.component');
-var AppModule = (function () {
-    function AppModule() {
+var EventsListComponent = (function () {
+    function EventsListComponent() {
+        this.event = {
+            id: 1,
+            name: 'Angular Connect',
+            date: '26/9/2036',
+            time: '10:00 am',
+            price: 599.99,
+            imageUrl: '/app/assets/images/angularconnect-shield.png',
+            location: {
+                address: '1057 DT',
+                city: 'London',
+                Country: 'England'
+            }
+        };
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule
-            ],
-            declarations: [
-                events_app_components_1.EventsAppComponent,
-                events_list_component_1.EventsListComponent
-            ],
-            bootstrap: [
-                events_app_components_1.EventsAppComponent
-            ]
+    EventsListComponent = __decorate([
+        core_1.Component({
+            selector: 'events-list',
+            templateUrl: 'app/events/events-list.component.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], EventsListComponent);
+    return EventsListComponent;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.EventsListComponent = EventsListComponent;
+//# sourceMappingURL=events-list.component.js.map
