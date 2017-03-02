@@ -12,6 +12,11 @@ var core_1 = require('@angular/core');
 var EventThumbnailComponent = (function () {
     function EventThumbnailComponent() {
     }
+    EventThumbnailComponent.prototype.getStartTimeClass = function () {
+        if (this.event && this.event.time === '8:00 am')
+            return ['green bold'];
+        return [];
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -19,10 +24,13 @@ var EventThumbnailComponent = (function () {
     EventThumbnailComponent = __decorate([
         core_1.Component({
             selector: 'event-thumbnail',
-            template: "\n    <div class=\"well hoverwell thumbnail\">\n      <h2>{{ event.name }}</h2>\n      <div>Date: {{ event.date }}</div>\n      <div>Time: {{ event.time }}</div>\n      <div>Price: R{{ event.price }}</div>\n      <div>\n        <span>Location: {{ event.location.address }}</span>\n        <span class=\"pad-left\">{{ event.location.city }}, {{ event.location.country }}</span>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"well hoverwell thumbnail\">\n      <h2>{{ event?.name }}</h2>\n      <div>Date: {{ event?.date }}</div>\n      <div [ngClass]=\"getStartTimeClass()\" [ngSwitch]=\"event?.time\">\n        Time: {{ event?.time }}\n        <span *ngSwitchCase=\"'8:00 am'\">(Early start)</span>\n        <span *ngSwitchCase=\"'10:00 am'\">(Late start)</span>\n        <span *ngSwitchDefault>(Normal start)</span>\n      </div>\n      <div>Price: R{{ event?.price }}</div>\n      <div *ngIf=\"event?.location\">\n        <span>Location: {{ event?.location.address }}</span>\n        <span class=\"pad-left\">{{ event?.location.city }}, {{ event?.location.country }}</span>\n      </div>\n    </div>\n  ",
             styles: [
                 '.pad-left {margin-left: 10px;}',
-                '.well div {color: #bbb;}'
+                '.well div {color: #bbb;}',
+                '.thumbnail {min-height: 210px;}',
+                '.green {color: #003300 !important;}',
+                '.bold {font-weight: bold;}'
             ]
         }), 
         __metadata('design:paramtypes', [])
