@@ -9,7 +9,10 @@
     "serve": "lite-server -c=bs-config.json",
     "serve:e2e": "lite-server -c=bs-config.e2e.json",
     "prestart": "npm run build",
-    "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run server\"",
+    "server": "node node_modules/ng2f-server/server.js",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
     "pree2e": "npm run build:e2e",
     "e2e": "concurrently \"npm run serve:e2e\" \"npm run protractor\" --kill-others --success first",
     "preprotractor": "webdriver-manager update",
@@ -37,7 +40,10 @@
     "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
-    "zone.js": "^0.7.4"
+    "zone.js": "^0.7.4",
+
+    "ng2f-bootstap": "^0.0.4",
+    "ng2f-server": "^0.2.3"
   },
   "devDependencies": {
     "concurrently": "^3.2.0",
