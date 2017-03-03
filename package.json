@@ -22,15 +22,14 @@
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.1.1",
-
-    "systemjs": "0.19.40",
     "core-js": "^2.4.1",
-    "rxjs": "5.0.1",
-    "zone.js": "^0.7.4",
-
+    "jquery": "^3.1.1",
     "ng2f-bootstap": "^0.0.4",
-    "ng2f-server": "^0.2.3"
+    "ng2f-server": "^0.2.3",
+    "rxjs": "5.0.1",
+    "systemjs": "0.19.40",
+    "toastr": "^2.1.2",
+    "zone.js": "^0.7.4"
   },
   "devDependencies": {
     "concurrently": "^3.2.0",
