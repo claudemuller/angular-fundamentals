@@ -20,6 +20,7 @@ var create_event_component_1 = require('./events/create-event.component');
 var _404_component_1 = require('./errors/404.component');
 var event_service_1 = require('./events/shared/event.service');
 var toastr_service_1 = require('./common/toastr.service');
+var event_route_activator_service_1 = require('./events/event-details/event-route-activator.service');
 var routes_1 = require('./routes');
 var AppModule = (function () {
     function AppModule() {
@@ -41,7 +42,8 @@ var AppModule = (function () {
             ],
             providers: [
                 event_service_1.EventService,
-                toastr_service_1.ToastrService
+                toastr_service_1.ToastrService,
+                event_route_activator_service_1.EventRouteActivatorService
             ],
             bootstrap: [
                 events_app_components_1.EventsAppComponent
