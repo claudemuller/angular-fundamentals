@@ -9,17 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var EventsAppComponent = (function () {
-    function EventsAppComponent() {
+var Error404Component = (function () {
+    function Error404Component() {
     }
-    EventsAppComponent = __decorate([
+    Error404Component = __decorate([
         core_1.Component({
-            selector: 'events-app',
-            template: "\n    <nav-bar></nav-bar>\n    <router-outlet></router-outlet>\n  "
+            template: '<h1 class="error-message">404\'d</h1>',
+            styles: [
+                ".error-message {\n        margin-top: 150px;\n        font-size: 170px;\n        text-align: center;\n      }"
+            ]
         }), 
         __metadata('design:paramtypes', [])
-    ], EventsAppComponent);
-    return EventsAppComponent;
+    ], Error404Component);
+    return Error404Component;
 }());
-exports.EventsAppComponent = EventsAppComponent;
-//# sourceMappingURL=events-app.components.js.map
+exports.Error404Component = Error404Component;
+//# sourceMappingURL=404.component.js.map

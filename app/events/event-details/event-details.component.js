@@ -9,13 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var event_service_1 = require('../shared/event.service');
 var EventDetailsComponent = (function () {
-    function EventDetailsComponent(_eventService) {
+    function EventDetailsComponent(_eventService, _route) {
         this._eventService = _eventService;
+        this._route = _route;
     }
     EventDetailsComponent.prototype.ngOnInit = function () {
-        this.event = this._eventService.getEvent(1);
+        this.event = this._eventService.getEvent(+this._route.snapshot.params['id']);
     };
     EventDetailsComponent = __decorate([
         core_1.Component({
@@ -25,7 +27,7 @@ var EventDetailsComponent = (function () {
                 '.event-image {height: 100px;}'
             ]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService])
+        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute])
     ], EventDetailsComponent);
     return EventDetailsComponent;
 }());
