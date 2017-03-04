@@ -18,6 +18,7 @@ import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 
 import { ToastrService } from './common/toastr.service';
+import { AuthService } from './user/auth.service';
 
 import { checkDirtyState } from './common/checkDirtyState';
 
@@ -45,7 +46,8 @@ import { appRoutes } from './routes';
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
-    }
+    },
+    AuthService
   ],
   bootstrap: [
     EventsAppComponent

@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var auth_service_1 = require('../user/auth.service');
 var NavbarComponent = (function () {
-    function NavbarComponent() {
+    function NavbarComponent(_authService) {
+        this._authService = _authService;
     }
     NavbarComponent = __decorate([
         core_1.Component({
@@ -23,7 +25,7 @@ var NavbarComponent = (function () {
                 'li > a.active {color: #f97924;}'
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
     ], NavbarComponent);
     return NavbarComponent;
 }());

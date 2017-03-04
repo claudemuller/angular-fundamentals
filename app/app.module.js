@@ -16,6 +16,7 @@ var events_app_components_1 = require('./events-app.components');
 var navbar_component_1 = require('./nav/navbar.component');
 var _404_component_1 = require('./errors/404.component');
 var toastr_service_1 = require('./common/toastr.service');
+var auth_service_1 = require('./user/auth.service');
 var checkDirtyState_1 = require('./common/checkDirtyState');
 var routes_1 = require('./routes');
 var AppModule = (function () {
@@ -44,7 +45,8 @@ var AppModule = (function () {
                 {
                     provide: 'canDeactivateCreateEvent',
                     useValue: checkDirtyState_1.checkDirtyState
-                }
+                },
+                auth_service_1.AuthService
             ],
             bootstrap: [
                 events_app_components_1.EventsAppComponent
