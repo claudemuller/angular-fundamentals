@@ -11,11 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var SessionListComponent = (function () {
     function SessionListComponent() {
+        this.visibleSessions = [];
     }
+    SessionListComponent.prototype.ngOnChanges = function () {
+        if (this.sessions) {
+            this.filterSessions(this.filterBy);
+        }
+    };
+    SessionListComponent.prototype.filterSessions = function (filter) {
+        if (filter === 'all') {
+            this.visibleSessions = this.sessions.slice(0);
+        }
+        else {
+            this.visibleSessions = this.sessions.filter(function (session) {
+                return session.level.toString().toLocaleLowerCase() === filter;
+            });
+        }
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)
     ], SessionListComponent.prototype, "sessions", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], SessionListComponent.prototype, "filterBy", void 0);
     SessionListComponent = __decorate([
         core_1.Component({
             selector: 'session-list',

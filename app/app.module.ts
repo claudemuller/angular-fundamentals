@@ -14,7 +14,8 @@ import {
 
   EventService,
   EventRouteActivatorService,
-  EventsListResolverService
+  EventsListResolverService,
+  DurationPipe
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.components';
@@ -44,7 +45,8 @@ import { appRoutes } from './routes';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    DurationPipe
   ],
   providers: [
     EventService,

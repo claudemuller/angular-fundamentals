@@ -4,4 +4,5 @@ function __export(m) {
 }
 __export(require('./event.service'));
 __export(require('./restrictedWords.validator'));
+__export(require('./duration.pipe'));
 //# sourceMappingURL=index.js.map
