@@ -14,12 +14,11 @@ var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var forms_2 = require('@angular/forms');
 var index_1 = require('./events/index');
+var index_2 = require('./common/index');
 var events_app_components_1 = require('./events-app.components');
 var navbar_component_1 = require('./nav/navbar.component');
 var _404_component_1 = require('./errors/404.component');
-var toastr_service_1 = require('./common/toastr.service');
 var auth_service_1 = require('./user/auth.service');
-var checkDirtyState_1 = require('./common/checkDirtyState');
 var routes_1 = require('./routes');
 var AppModule = (function () {
     function AppModule() {
@@ -46,12 +45,15 @@ var AppModule = (function () {
             ],
             providers: [
                 index_1.EventService,
-                toastr_service_1.ToastrService,
+                {
+                    provide: index_2.TOASTR_TOKEN,
+                    useValue: toastr
+                },
                 index_1.EventRouteActivatorService,
                 index_1.EventsListResolverService,
                 {
                     provide: 'canDeactivateCreateEvent',
-                    useValue: checkDirtyState_1.checkDirtyState
+                    useValue: index_2.checkDirtyState
                 },
                 auth_service_1.AuthService
             ],

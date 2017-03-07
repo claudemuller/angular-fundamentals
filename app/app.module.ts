@@ -18,16 +18,23 @@ import {
   DurationPipe
 } from './events/index';
 
+import {
+  TOASTR_TOKEN,
+  Toastr,
+  checkDirtyState,
+  JQ_TOKEN
+} from './common/index';
+
 import { EventsAppComponent } from './events-app.components';
 import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 
-import { ToastrService } from './common/toastr.service';
 import { AuthService } from './user/auth.service';
 
-import { checkDirtyState } from './common/checkDirtyState';
-
 import { appRoutes } from './routes';
+
+declare let toastr: Toastr;
+declare let jQuery: Object;
 
 @NgModule({
   imports: [
@@ -50,7 +57,10 @@ import { appRoutes } from './routes';
   ],
   providers: [
     EventService,
-    ToastrService,
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
     EventRouteActivatorService,
     EventsListResolverService,
     {
