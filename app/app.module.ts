@@ -22,7 +22,8 @@ import {
   TOASTR_TOKEN,
   Toastr,
   checkDirtyState,
-  JQ_TOKEN
+  JQ_TOKEN,
+  SimpleModalComponent
 } from './common/index';
 
 import { EventsAppComponent } from './events-app.components';
@@ -53,13 +54,18 @@ declare let jQuery: Object;
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   providers: [
     EventService,
     {
       provide: TOASTR_TOKEN,
       useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN,
+      useValue: jQuery
     },
     EventRouteActivatorService,
     EventsListResolverService,

@@ -5,4 +5,5 @@ function __export(m) {
 __export(require('./checkDirtyState'));
 __export(require('./jquery.service'));
 __export(require('./toastr.service'));
+__export(require('./simpleModal.component'));
 //# sourceMappingURL=index.js.map
