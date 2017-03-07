@@ -10,10 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../user/auth.service');
+var event_service_1 = require('../events/shared/event.service');
 var NavbarComponent = (function () {
-    function NavbarComponent(_authService) {
+    function NavbarComponent(_authService, _eventService) {
         this._authService = _authService;
+        this._eventService = _eventService;
+        this.searchTerm = '';
     }
+    NavbarComponent.prototype.searchSessions = function (searchTerm) {
+        var _this = this;
+        this._eventService.searchSessions(searchTerm).subscribe(function (sessions) {
+            _this.foundSessions = sessions;
+        });
+    };
     NavbarComponent = __decorate([
         core_1.Component({
             selector: 'nav-bar',
@@ -25,7 +34,7 @@ var NavbarComponent = (function () {
                 'li > a.active {color: #f97924;}'
             ]
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, event_service_1.EventService])
     ], NavbarComponent);
     return NavbarComponent;
 }());
