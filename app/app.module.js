@@ -43,6 +43,7 @@ var AppModule = (function () {
                 index_1.SessionListComponent,
                 index_1.DurationPipe,
                 index_2.SimpleModalComponent,
+                index_1.UpvoteComponent,
                 index_2.ModalTriggerDirective
             ],
             providers: [
@@ -61,7 +62,8 @@ var AppModule = (function () {
                     provide: 'canDeactivateCreateEvent',
                     useValue: index_2.checkDirtyState
                 },
-                auth_service_1.AuthService
+                auth_service_1.AuthService,
+                index_1.VoterService
             ],
             bootstrap: [
                 events_app_components_1.EventsAppComponent

@@ -2,6 +2,9 @@ import { Component, Input, OnChanges } from '@angular/core';
 
 import { ISession } from '../shared/event.model';
 
+import { VoterService } from './voter.service';
+import { AuthService } from '../../user/auth.service';
+
 @Component({
   selector: 'session-list',
   templateUrl: 'app/events/event-details/session-list.component.html'
@@ -12,6 +15,9 @@ export class SessionListComponent implements OnChanges {
   @Input() sortBy: string;
 
   public visibleSessions: Array<ISession> = [];
+
+  constructor(private _voterService: VoterService,
+              private _authService: AuthService) {}
 
   ngOnChanges(): void {
     if (this.sessions) {
@@ -38,5 +44,16 @@ export class SessionListComponent implements OnChanges {
 
   public sortByVotesDesc(s1: ISession, s2: ISession): number {
     return s2.voters.length - s1.voters.length;
+  }
+
+  public toggleVote(session: ISession): void {
+    if (this.userHasVoted(session)) this._voterService.deleteVoter(session, this._authService.currentUser.userName);
+    else this._voterService.addVoter(session, this._authService.currentUser.userName);
+
+    if (this.sortBy === 'votes') this.visibleSessions.sort(this.sortByVotesDesc);
+  }
+
+  public userHasVoted(session: ISession): boolean {
+    return this._voterService.userHasVoted(session, this._authService.currentUser.userName);
   }
 }

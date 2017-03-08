@@ -11,10 +11,13 @@ import {
   CreateEventComponent,
   CreateSessionComponent,
   SessionListComponent,
+  UpvoteComponent,
 
   EventService,
   EventRouteActivatorService,
   EventsListResolverService,
+  VoterService,
+
   DurationPipe
 } from './events/index';
 
@@ -57,6 +60,7 @@ declare let jQuery: Object;
     SessionListComponent,
     DurationPipe,
     SimpleModalComponent,
+    UpvoteComponent,
     ModalTriggerDirective
   ],
   providers: [
@@ -75,7 +79,8 @@ declare let jQuery: Object;
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
     },
-    AuthService
+    AuthService,
+    VoterService
   ],
   bootstrap: [
     EventsAppComponent
