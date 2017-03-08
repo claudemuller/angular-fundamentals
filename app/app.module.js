@@ -42,7 +42,8 @@ var AppModule = (function () {
                 index_1.CreateSessionComponent,
                 index_1.SessionListComponent,
                 index_1.DurationPipe,
-                index_2.SimpleModalComponent
+                index_2.SimpleModalComponent,
+                index_2.ModalTriggerDirective
             ],
             providers: [
                 index_1.EventService,

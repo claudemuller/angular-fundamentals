@@ -23,7 +23,8 @@ import {
   Toastr,
   checkDirtyState,
   JQ_TOKEN,
-  SimpleModalComponent
+  SimpleModalComponent,
+  ModalTriggerDirective
 } from './common/index';
 
 import { EventsAppComponent } from './events-app.components';
@@ -55,7 +56,8 @@ declare let jQuery: Object;
     CreateSessionComponent,
     SessionListComponent,
     DurationPipe,
-    SimpleModalComponent
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   providers: [
     EventService,

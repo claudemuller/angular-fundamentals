@@ -6,4 +6,5 @@ __export(require('./checkDirtyState'));
 __export(require('./jquery.service'));
 __export(require('./toastr.service'));
 __export(require('./simpleModal.component'));
+__export(require('./modalTrigger.directive'));
 //# sourceMappingURL=index.js.map
