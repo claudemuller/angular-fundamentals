@@ -15,11 +15,14 @@ var EventDetailsComponent = (function () {
     function EventDetailsComponent(_eventService, _route) {
         this._eventService = _eventService;
         this._route = _route;
-        this.filterBy = 'all';
-        this.sortBy = 'votes';
+        this._resetState();
     }
     EventDetailsComponent.prototype.ngOnInit = function () {
-        this.event = this._eventService.getEvent(+this._route.snapshot.params['id']);
+        var _this = this;
+        this._route.params.forEach(function (params) {
+            _this.event = _this._eventService.getEvent(+params['id']);
+            _this._resetState();
+        });
     };
     EventDetailsComponent.prototype.addSession = function () {
         this.addMode = true;
@@ -33,6 +36,11 @@ var EventDetailsComponent = (function () {
     };
     EventDetailsComponent.prototype.cancelAddSession = function () {
         this.addMode = false;
+    };
+    EventDetailsComponent.prototype._resetState = function () {
+        this.addMode = false;
+        this.filterBy = 'all';
+        this.sortBy = 'votes';
     };
     EventDetailsComponent = __decorate([
         core_1.Component({

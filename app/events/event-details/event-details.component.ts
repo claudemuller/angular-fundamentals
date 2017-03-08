@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { EventService } from '../shared/event.service';
 
@@ -16,14 +16,19 @@ import { IEvent, ISession } from '../shared/event.model';
 export class EventDetailsComponent implements OnInit {
   public event: IEvent;
   public addMode: boolean;
-  public filterBy: string = 'all';
-  public sortBy: string = 'votes';
+  public filterBy: string;
+  public sortBy: string;
 
   constructor(private _eventService: EventService,
-              private _route: ActivatedRoute) {}
+              private _route: ActivatedRoute) {
+    this._resetState();
+  }
 
   public ngOnInit(): void {
-    this.event = this._eventService.getEvent(+this._route.snapshot.params['id']);
+    this._route.params.forEach((params: Params) => {
+      this.event = this._eventService.getEvent(+params['id']);
+      this._resetState();
+    });
   }
 
   public addSession(): void {
@@ -40,5 +45,11 @@ export class EventDetailsComponent implements OnInit {
 
   public cancelAddSession(): void {
     this.addMode = false;
+  }
+
+  private _resetState(): void {
+    this.addMode = false;
+    this.filterBy = 'all';
+    this.sortBy = 'votes';
   }
 }
