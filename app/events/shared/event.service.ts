@@ -27,26 +27,9 @@ export class EventService {
       .catch(this._handleError);
   }
 
-  public searchSessions(searchTerm: string): EventEmitter {
-    var term = searchTerm.toLocaleLowerCase();
-    var results: Array<ISession> = [];
-
-    EVENTS.forEach(event => {
-      var matchingSessions = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1);
-      matchingSessions = matchingSessions.map((session: any) => {
-        session.eventId = event.id;
-
-        return session;
-      });
-      results = results.concat(matchingSessions);
-    });
-
-    var emitter = new EventEmitter(true);
-    setTimeout(() => {
-      emitter.emit(results);
-    }, 100);
-
-    return emitter;
+  public searchSessions(searchTerm: string): Observable {
+    return this._http.get('/api/sessions/search?search=' + searchTerm).map((response: Response) => response.json())
+      .catch(this._handleError);
   }
 
   private _handleError(error: Response): Observable {
