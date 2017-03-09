@@ -9,7 +9,7 @@ export class EventsListResolverService implements Resolve<any> {
 
   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>|Promise<any>|any {
 
-    return this._eventService.getEvents().map(events => events);
+    return this._eventService.getEvents();
   }
 
 }

@@ -12,15 +12,15 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var event_service_1 = require('../shared/event.service');
 var EventDetailsComponent = (function () {
-    function EventDetailsComponent(_eventService, _route) {
+    function EventDetailsComponent(_eventService, _routes) {
         this._eventService = _eventService;
-        this._route = _route;
+        this._routes = _routes;
         this._resetState();
     }
     EventDetailsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._route.params.forEach(function (params) {
-            _this.event = _this._eventService.getEvent(+params['id']);
+        this._routes.data.forEach(function (data) {
+            _this.event = data['event'];
             _this._resetState();
         });
     };

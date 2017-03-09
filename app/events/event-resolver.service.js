@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var event_service_1 = require('./shared/event.service');
-var EventsListResolverService = (function () {
-    function EventsListResolverService(_eventService) {
+var EventResolverService = (function () {
+    function EventResolverService(_eventService) {
         this._eventService = _eventService;
     }
-    EventsListResolverService.prototype.resolve = function (route, state) {
-        return this._eventService.getEvents();
+    EventResolverService.prototype.resolve = function (route) {
+        return this._eventService.getEvent(route.params['id']);
     };
-    EventsListResolverService = __decorate([
+    EventResolverService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [event_service_1.EventService])
-    ], EventsListResolverService);
-    return EventsListResolverService;
+    ], EventResolverService);
+    return EventResolverService;
 }());
-exports.EventsListResolverService = EventsListResolverService;
-//# sourceMappingURL=events-list-resolver.service.js.map
+exports.EventResolverService = EventResolverService;
+//# sourceMappingURL=event-resolver.service.js.map

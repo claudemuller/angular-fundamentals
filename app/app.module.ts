@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import {
   EventsListComponent,
@@ -14,8 +15,8 @@ import {
   UpvoteComponent,
 
   EventService,
-  EventRouteActivatorService,
   EventsListResolverService,
+  EventResolverService,
   VoterService,
 
   DurationPipe,
@@ -48,6 +49,7 @@ declare let jQuery: Object;
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
@@ -76,8 +78,8 @@ declare let jQuery: Object;
       provide: JQ_TOKEN,
       useValue: jQuery
     },
-    EventRouteActivatorService,
     EventsListResolverService,
+    EventResolverService,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState

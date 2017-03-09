@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var forms_2 = require('@angular/forms');
+var http_1 = require('@angular/http');
 var index_1 = require('./events/index');
 var index_2 = require('./common/index');
 var events_app_components_1 = require('./events-app.components');
@@ -29,6 +30,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 forms_2.ReactiveFormsModule,
+                http_1.HttpModule,
                 router_1.RouterModule.forRoot(routes_1.appRoutes)
             ],
             declarations: [
@@ -57,8 +59,8 @@ var AppModule = (function () {
                     provide: index_2.JQ_TOKEN,
                     useValue: jQuery
                 },
-                index_1.EventRouteActivatorService,
                 index_1.EventsListResolverService,
+                index_1.EventResolverService,
                 {
                     provide: 'canDeactivateCreateEvent',
                     useValue: index_2.checkDirtyState

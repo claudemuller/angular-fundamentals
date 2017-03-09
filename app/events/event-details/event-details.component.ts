@@ -20,14 +20,14 @@ export class EventDetailsComponent implements OnInit {
   public sortBy: string;
 
   constructor(private _eventService: EventService,
-              private _route: ActivatedRoute) {
+              private _routes: ActivatedRoute) {
     this._resetState();
   }
 
   public ngOnInit(): void {
-    this._route.params.forEach((params: Params) => {
-      this.event = this._eventService.getEvent(+params['id']);
-      this._resetState();
+    this._routes.data.forEach(data => {
+      this.event = data['event'];
+        this._resetState();
     });
   }
 
