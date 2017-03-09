@@ -13,6 +13,13 @@ var UpvoteComponent = (function () {
     function UpvoteComponent() {
         this.vote = new core_1.EventEmitter();
     }
+    Object.defineProperty(UpvoteComponent.prototype, "voted", {
+        set: function (val) {
+            this.iconColour = val ? 'red' : 'white';
+        },
+        enumerable: true,
+        configurable: true
+    });
     UpvoteComponent.prototype.onClick = function () {
         this.vote.emit({});
     };
@@ -22,8 +29,9 @@ var UpvoteComponent = (function () {
     ], UpvoteComponent.prototype, "count", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], UpvoteComponent.prototype, "voted", void 0);
+        __metadata('design:type', Object), 
+        __metadata('design:paramtypes', [Object])
+    ], UpvoteComponent.prototype, "voted", null);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
@@ -31,7 +39,7 @@ var UpvoteComponent = (function () {
     UpvoteComponent = __decorate([
         core_1.Component({
             selector: 'upvote',
-            template: "\n    <div class=\"voting-widget-container pointable\" (click)=\"onClick()\">\n      <div class=\"well voting-widget\">\n        <div class=\"voting-buttons\">\n          <i *ngIf=\"voted\" class=\"glyphicon glyphicon-heart\"></i>\n          <i *ngIf=\"!voted\" class=\"glyphicon glyphicon-heart-empty\"></i>\n        </div>\n      </div>\n      <div class=\"badge badge-inverse voting-count\">\n        <div>{{ count }}</div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"voting-widget-container pointable\" (click)=\"onClick()\">\n      <div class=\"well voting-widget\">\n        <div class=\"voting-buttons\">\n          <i [style.color]=\"iconColour\" class=\"glyphicon glyphicon-heart\"></i>\n        </div>\n      </div>\n      <div class=\"badge badge-inverse voting-count\">\n        <div>{{ count }}</div>\n      </div>\n    </div>\n  ",
             stylesUrls: ['/app/events/event-details/upvote.component.css']
         }), 
         __metadata('design:paramtypes', [])
