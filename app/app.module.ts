@@ -18,7 +18,9 @@ import {
   EventsListResolverService,
   VoterService,
 
-  DurationPipe
+  DurationPipe,
+
+  LocationValidator,
 } from './events/index';
 
 import {
@@ -58,10 +60,11 @@ declare let jQuery: Object;
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    DurationPipe,
     SimpleModalComponent,
     UpvoteComponent,
-    ModalTriggerDirective
+    DurationPipe,
+    ModalTriggerDirective,
+    LocationValidator
   ],
   providers: [
     EventService,
