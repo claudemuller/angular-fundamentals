@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Subject, Observable } from 'rxjs/Rx';
-import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { IEvent, ISession } from './event.model';
 
@@ -9,22 +9,22 @@ export class EventService {
   constructor(private _http: Http) {}
 
   public getEvents(): Observable<Array<IEvent>> {
-    return this._http.get('/api/events').map((response: Response) => <IEvent[]>response.json()).catch(this._handleError);
+    return this._http.get('/api/events').map((response: Response) => <IEvent[]>response.json())
+      .catch(this._handleError);
   }
 
   public getEvent(id: number): Observable<IEvent> {
-    return this._http.get('/api/events/' + id).map((response: Response) => <IEvent>response.json()).catch(this._handleError);
+    return this._http.get('/api/events/' + id).map((response: Response) => <IEvent>response.json())
+      .catch(this._handleError);
   }
 
-  public saveEvent(event): void {
-    event.id = 999;
-    event.sessions = [];
-    EVENTS.push(event);
-  }
+  public saveEvent(event): Observable<IEvent> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
 
-  public updateEvent(event): void {
-    let index = EVENTS.findIndex(x => x.id = event.id);
-    EVENTS[index] = event;
+    return this._http.post('/api/events', JSON.stringify(event), options)
+      .map((response: Response) => response.json())
+      .catch(this._handleError);
   }
 
   public searchSessions(searchTerm: string): EventEmitter {

@@ -16,19 +16,19 @@ var EventService = (function () {
         this._http = _http;
     }
     EventService.prototype.getEvents = function () {
-        return this._http.get('/api/events').map(function (response) { return response.json(); }).catch(this._handleError);
+        return this._http.get('/api/events').map(function (response) { return response.json(); })
+            .catch(this._handleError);
     };
     EventService.prototype.getEvent = function (id) {
-        return this._http.get('/api/events/' + id).map(function (response) { return response.json(); }).catch(this._handleError);
+        return this._http.get('/api/events/' + id).map(function (response) { return response.json(); })
+            .catch(this._handleError);
     };
     EventService.prototype.saveEvent = function (event) {
-        event.id = 999;
-        event.sessions = [];
-        EVENTS.push(event);
-    };
-    EventService.prototype.updateEvent = function (event) {
-        var index = EVENTS.findIndex(function (x) { return x.id = event.id; });
-        EVENTS[index] = event;
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('/api/events', JSON.stringify(event), options)
+            .map(function (response) { return response.json(); })
+            .catch(this._handleError);
     };
     EventService.prototype.searchSessions = function (searchTerm) {
         var term = searchTerm.toLocaleLowerCase();
