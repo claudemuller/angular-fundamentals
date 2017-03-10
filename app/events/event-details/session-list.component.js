@@ -46,9 +46,9 @@ var SessionListComponent = (function () {
     };
     SessionListComponent.prototype.toggleVote = function (session) {
         if (this.userHasVoted(session))
-            this._voterService.deleteVoter(session, this._authService.currentUser.userName);
+            this._voterService.deleteVoter(this.eventId, session, this._authService.currentUser.userName);
         else
-            this._voterService.addVoter(session, this._authService.currentUser.userName);
+            this._voterService.addVoter(this.eventId, session, this._authService.currentUser.userName);
         if (this.sortBy === 'votes')
             this.visibleSessions.sort(this.sortByVotesDesc);
     };
@@ -67,6 +67,10 @@ var SessionListComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], SessionListComponent.prototype, "sortBy", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], SessionListComponent.prototype, "eventId", void 0);
     SessionListComponent = __decorate([
         core_1.Component({
             selector: 'session-list',

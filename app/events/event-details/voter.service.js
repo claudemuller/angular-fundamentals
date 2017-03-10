@@ -9,21 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+var rxjs_1 = require('rxjs');
 var VoterService = (function () {
-    function VoterService() {
+    function VoterService(_http) {
+        this._http = _http;
     }
-    VoterService.prototype.addVoter = function (session, voterName) {
+    VoterService.prototype.addVoter = function (eventId, session, voterName) {
         session.voters.push(voterName);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var url = "/api/events/" + eventId + "/sessions/" + session.id + "/voters/" + voterName;
+        this._http.post(url, JSON.stringify({}), options)
+            .catch(this._handleError)
+            .subscribe();
     };
-    VoterService.prototype.deleteVoter = function (session, voterName) {
+    VoterService.prototype.deleteVoter = function (eventId, session, voterName) {
         session.voters = session.voters.filter(function (voter) { return voter !== voterName; });
+        this._http.delete("/api/events/" + eventId + "/sessions/" + session.id + "/voters/" + voterName)
+            .catch(this._handleError)
+            .subscribe();
     };
     VoterService.prototype.userHasVoted = function (session, voterName) {
         return session.voters.some(function (voter) { return voter === voterName; });
     };
+    VoterService.prototype._handleError = function (error) {
+        return new rxjs_1.Observable.throw(error.statusText);
+    };
     VoterService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], VoterService);
     return VoterService;
 }());
