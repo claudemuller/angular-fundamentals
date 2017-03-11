@@ -10,32 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var Rx_1 = require('rxjs/Rx');
+var http_1 = require('@angular/http');
 var EventService = (function () {
-    function EventService() {
+    function EventService(_http) {
+        this._http = _http;
     }
     EventService.prototype.getEvents = function () {
-        var subject = new Rx_1.Subject();
-        setTimeout(function () {
-            subject.next(EVENTS);
-            subject.complete();
-        }, 100);
-        return subject;
+        return this._http.get('/api/events').map(function (response) { return response.json(); })
+            .catch(this._handleError);
     };
     EventService.prototype.getEvent = function (id) {
-        return EVENTS.find(function (event) { return event.id === id; });
+        return this._http.get('/api/events/' + id).map(function (response) { return response.json(); })
+            .catch(this._handleError);
     };
     EventService.prototype.saveEvent = function (event) {
-        event.id = 999;
-        event.sessions = [];
-        EVENTS.push(event);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this._http.post('/api/events', JSON.stringify(event), options)
+            .map(function (response) { return response.json(); })
+            .catch(this._handleError);
     };
-    EventService.prototype.updateEvent = function (event) {
-        var index = EVENTS.findIndex(function (x) { return x.id = event.id; });
-        EVENTS[index] = event;
+    EventService.prototype.searchSessions = function (searchTerm) {
+        return this._http.get('/api/sessions/search?search=' + searchTerm).map(function (response) { return response.json(); })
+            .catch(this._handleError);
+    };
+    EventService.prototype._handleError = function (error) {
+        return Rx_1.Observable.throw(error.statusText);
     };
     EventService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], EventService);
     return EventService;
 }());

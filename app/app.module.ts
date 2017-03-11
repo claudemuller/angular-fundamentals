@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import {
   EventsListComponent,
@@ -11,29 +12,45 @@ import {
   CreateEventComponent,
   CreateSessionComponent,
   SessionListComponent,
+  UpvoteComponent,
 
   EventService,
-  EventRouteActivatorService,
-  EventsListResolverService
+  EventsListResolverService,
+  EventResolverService,
+  VoterService,
+
+  DurationPipe,
+
+  LocationValidator,
 } from './events/index';
+
+import {
+  TOASTR_TOKEN,
+  Toastr,
+  checkDirtyState,
+  JQ_TOKEN,
+  SimpleModalComponent,
+  ModalTriggerDirective
+} from './common/index';
 
 import { EventsAppComponent } from './events-app.components';
 import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
-import { ToastrService } from './common/toastr.service';
 import { AuthService } from './user/auth.service';
 
-import { checkDirtyState } from './common/checkDirtyState';
-
 import { appRoutes } from './routes';
+
+declare let toastr: Toastr;
+declare let jQuery: Object;
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
@@ -47,17 +64,30 @@ import { appRoutes } from './routes';
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent
+    SimpleModalComponent,
+    UpvoteComponent,
+    DurationPipe,
+    ModalTriggerDirective,
+    LocationValidator
   ],
   providers: [
     EventService,
-    ToastrService,
-    EventRouteActivatorService,
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN,
+      useValue: jQuery
+    },
     EventsListResolverService,
+    EventResolverService,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
     },
-    AuthService
+    AuthService,
+    VoterService
   ],
   bootstrap: [
     EventsAppComponent

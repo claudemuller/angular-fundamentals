@@ -13,14 +13,14 @@ var platform_browser_1 = require('@angular/platform-browser');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var forms_2 = require('@angular/forms');
+var http_1 = require('@angular/http');
 var index_1 = require('./events/index');
+var index_2 = require('./common/index');
 var events_app_components_1 = require('./events-app.components');
 var navbar_component_1 = require('./nav/navbar.component');
 var _404_component_1 = require('./errors/404.component');
 var collapsible_well_component_1 = require('./common/collapsible-well.component');
-var toastr_service_1 = require('./common/toastr.service');
 var auth_service_1 = require('./user/auth.service');
-var checkDirtyState_1 = require('./common/checkDirtyState');
 var routes_1 = require('./routes');
 var AppModule = (function () {
     function AppModule() {
@@ -31,6 +31,7 @@ var AppModule = (function () {
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
                 forms_2.ReactiveFormsModule,
+                http_1.HttpModule,
                 router_1.RouterModule.forRoot(routes_1.appRoutes)
             ],
             declarations: [
@@ -43,18 +44,29 @@ var AppModule = (function () {
                 _404_component_1.Error404Component,
                 index_1.CreateSessionComponent,
                 index_1.SessionListComponent,
-                collapsible_well_component_1.CollapsibleWellComponent
+                index_1.UpvoteComponent,
+                index_1.DurationPipe,
+                index_2.ModalTriggerDirective,
+                index_1.LocationValidator
             ],
             providers: [
                 index_1.EventService,
-                toastr_service_1.ToastrService,
-                index_1.EventRouteActivatorService,
+                {
+                    provide: index_2.TOASTR_TOKEN,
+                    useValue: toastr
+                },
+                {
+                    provide: index_2.JQ_TOKEN,
+                    useValue: jQuery
+                },
                 index_1.EventsListResolverService,
+                index_1.EventResolverService,
                 {
                     provide: 'canDeactivateCreateEvent',
-                    useValue: checkDirtyState_1.checkDirtyState
+                    useValue: index_2.checkDirtyState
                 },
-                auth_service_1.AuthService
+                auth_service_1.AuthService,
+                index_1.VoterService
             ],
             bootstrap: [
                 events_app_components_1.EventsAppComponent

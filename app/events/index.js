@@ -8,4 +8,6 @@ __export(require('./events-list-resolver.service'));
 __export(require('./events-list.component'));
 __export(require('./shared/index'));
 __export(require('./event-details/index'));
+__export(require('./location-validator.directive'));
+__export(require('./event-resolver.service'));
 //# sourceMappingURL=index.js.map

@@ -9,19 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var event_service_1 = require('./shared/event.service');
-var EventsListResolverService = (function () {
-    function EventsListResolverService(_eventService) {
-        this._eventService = _eventService;
+var DurationPipe = (function () {
+    function DurationPipe() {
     }
-    EventsListResolverService.prototype.resolve = function (route, state) {
-        return this._eventService.getEvents();
+    DurationPipe.prototype.transform = function (value) {
+        switch (value) {
+            case 1: return 'Half Hour';
+            case 2: return 'Hour';
+            case 3: return 'Half Day';
+            case 4: return 'Full Day';
+            default: return value.toString();
+        }
     };
-    EventsListResolverService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [event_service_1.EventService])
-    ], EventsListResolverService);
-    return EventsListResolverService;
+    DurationPipe = __decorate([
+        core_1.Pipe({ name: 'duration' }), 
+        __metadata('design:paramtypes', [])
+    ], DurationPipe);
+    return DurationPipe;
 }());
-exports.EventsListResolverService = EventsListResolverService;
-//# sourceMappingURL=events-list-resolver.service.js.map
+exports.DurationPipe = DurationPipe;
+//# sourceMappingURL=duration.pipe.js.map
