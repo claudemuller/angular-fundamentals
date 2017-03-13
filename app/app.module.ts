@@ -36,6 +36,7 @@ import {
 import { EventsAppComponent } from './events-app.components';
 import { NavbarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 import { AuthService } from './user/auth.service';
 
@@ -62,6 +63,7 @@ declare let jQuery: Object;
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
+    CollapsibleWellComponent
     SimpleModalComponent,
     UpvoteComponent,
     DurationPipe,

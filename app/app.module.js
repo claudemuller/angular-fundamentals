@@ -19,6 +19,7 @@ var index_2 = require('./common/index');
 var events_app_components_1 = require('./events-app.components');
 var navbar_component_1 = require('./nav/navbar.component');
 var _404_component_1 = require('./errors/404.component');
+var collapsible_well_component_1 = require('./common/collapsible-well.component');
 var auth_service_1 = require('./user/auth.service');
 var routes_1 = require('./routes');
 var AppModule = (function () {
@@ -43,7 +44,6 @@ var AppModule = (function () {
                 _404_component_1.Error404Component,
                 index_1.CreateSessionComponent,
                 index_1.SessionListComponent,
-                index_2.SimpleModalComponent,
                 index_1.UpvoteComponent,
                 index_1.DurationPipe,
                 index_2.ModalTriggerDirective,
