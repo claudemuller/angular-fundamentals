@@ -34,7 +34,7 @@ var VoterService = (function () {
         return session.voters.some(function (voter) { return voter === voterName; });
     };
     VoterService.prototype._handleError = function (error) {
-        return new rxjs_1.Observable.throw(error.statusText);
+        return rxjs_1.Observable.throw(error.statusText);
     };
     VoterService = __decorate([
         core_1.Injectable(), 

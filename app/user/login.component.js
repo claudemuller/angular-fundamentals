@@ -15,10 +15,19 @@ var LoginComponent = (function () {
     function LoginComponent(_authService, _routes) {
         this._authService = _authService;
         this._routes = _routes;
+        this.loginInvalid = false;
     }
     LoginComponent.prototype.login = function (formValues) {
-        this._authService.loginUser(formValues.userName, formValues.password);
-        this._routes.navigate(['events']);
+        var _this = this;
+        this._authService.loginUser(formValues.userName, formValues.password)
+            .subscribe(function (response) {
+            if (!response) {
+                _this.loginInvalid = true;
+            }
+            else {
+                _this._routes.navigate(['events']);
+            }
+        });
     };
     LoginComponent.prototype.cancel = function () {
         this._routes.navigate(['events']);

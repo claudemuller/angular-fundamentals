@@ -33,6 +33,6 @@ export class VoterService {
   }
 
   private _handleError(error: Response): Observable {
-    return new Observable.throw(error.statusText);
+    return Observable.throw(error.statusText);
   }
 }
