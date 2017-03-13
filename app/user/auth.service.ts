@@ -33,9 +33,14 @@ export class AuthService {
     return !!this.currentUser;
   }
 
-  public updateCurrentUser(firstName: string, lastName: string): void {
+  public updateCurrentUser(firstName: string, lastName: string): Observable {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
+
+    const headers = new Headers({'Content-Type': 'appication/json'});
+    const options = new RequestOptions({headers: headers});
+
+    return this._http.put(`/api/users/${this.currentUser.id}`, JSON.stringify(this.currentUser), options);
   }
 
   public checkAuthenticationStatus(): void {

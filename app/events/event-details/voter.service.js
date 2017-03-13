@@ -38,9 +38,10 @@ var VoterService = (function () {
     };
     VoterService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
     ], VoterService);
     return VoterService;
+    var _a;
 }());
 exports.VoterService = VoterService;
 //# sourceMappingURL=voter.service.js.map

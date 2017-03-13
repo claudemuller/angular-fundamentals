@@ -51,9 +51,10 @@ var ProfileComponent = (function () {
             styles: ["\n    em {\n      float: right;\n      color: #e05c65;\n      padding-left: 10px;\n    }\n    .error input {background-color: #e3c3c5;}\n    .error ::-webkit-input-placeholder {color: #999;}\n    .error ::-moz-placeholder {color: #999;}\n    .error :-moz-placeholder {color: #999;}\n    .error :-ms-input-placeholder {color: #999;}\n  "]
         }),
         __param(1, core_1.Inject(toastr_service_1.TOASTR_TOKEN)), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, Object, router_1.Router])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, Object, (typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object])
     ], ProfileComponent);
     return ProfileComponent;
+    var _a;
 }());
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map
