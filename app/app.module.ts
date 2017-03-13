@@ -21,7 +21,7 @@ import {
 
   DurationPipe,
 
-  LocationValidator,
+  LocationValidator
 } from './events/index';
 
 import {
@@ -63,7 +63,7 @@ declare let jQuery: Object;
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
     SimpleModalComponent,
     UpvoteComponent,
     DurationPipe,

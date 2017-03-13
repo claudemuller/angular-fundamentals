@@ -44,6 +44,8 @@ var AppModule = (function () {
                 _404_component_1.Error404Component,
                 index_1.CreateSessionComponent,
                 index_1.SessionListComponent,
+                collapsible_well_component_1.CollapsibleWellComponent,
+                index_2.SimpleModalComponent,
                 index_1.UpvoteComponent,
                 index_1.DurationPipe,
                 index_2.ModalTriggerDirective,
