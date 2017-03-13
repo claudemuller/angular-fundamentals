@@ -38,6 +38,22 @@ export class AuthService {
     this.currentUser.lastName = lastName;
   }
 
+  public checkAuthenticationStatus(): void {
+    return this._http.get('/api/currentIdentity').map((response: any) => {
+        if (response._body) {
+          return response.json();
+        } else {
+          return {};
+        }
+      })
+      .do(currentUser => {
+        if (!!currentUser.userName) {
+          this.currentUser = currentUser;
+        }
+      })
+      .subscribe();
+  }
+
   private _handleError(error: Response): Observable {
     return Observable.throw(error.statusText);
   }

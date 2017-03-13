@@ -40,6 +40,23 @@ var AuthService = (function () {
         this.currentUser.firstName = firstName;
         this.currentUser.lastName = lastName;
     };
+    AuthService.prototype.checkAuthenticationStatus = function () {
+        var _this = this;
+        return this._http.get('/api/currentIdentity').map(function (response) {
+            if (response._body) {
+                return response.json();
+            }
+            else {
+                return {};
+            }
+        })
+            .do(function (currentUser) {
+            if (!!currentUser.userName) {
+                _this.currentUser = currentUser;
+            }
+        })
+            .subscribe();
+    };
     AuthService.prototype._handleError = function (error) {
         return Rx_1.Observable.throw(error.statusText);
     };

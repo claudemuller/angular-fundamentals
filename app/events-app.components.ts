@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { AuthService } from './user/auth.service';
+
 @Component({
   selector: 'events-app',
   template: `
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
   `
 })
 export class EventsAppComponent {
+  constructor(private _authService: AuthService) {}
 
+  public ngOnInit(): void {
+    this._authService.checkAuthenticationStatus();
+  }
 }
