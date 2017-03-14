@@ -18,6 +18,7 @@ export class AuthService {
       password: password
     };
 
+    console.log(loginInfo);
     this._http.post('/api/login', JSON.stringify(loginInfo), options)
       .do(response => {
         if (response) {

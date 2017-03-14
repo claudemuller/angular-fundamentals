@@ -23,6 +23,7 @@ var AuthService = (function () {
             username: userName,
             password: password
         };
+        console.log(loginInfo);
         this._http.post('/api/login', JSON.stringify(loginInfo), options)
             .do(function (response) {
             if (response) {
