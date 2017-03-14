@@ -33,10 +33,9 @@ var ModalTriggerDirective = (function () {
             selector: '[modal-trigger]'
         }),
         __param(0, core_1.Inject(jquery_service_1.JQ_TOKEN)), 
-        __metadata('design:paramtypes', [Object, (typeof (_a = typeof core_1.ElementRef !== 'undefined' && core_1.ElementRef) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [Object, core_1.ElementRef])
     ], ModalTriggerDirective);
     return ModalTriggerDirective;
-    var _a;
 }());
 exports.ModalTriggerDirective = ModalTriggerDirective;
 //# sourceMappingURL=modalTrigger.directive.js.map

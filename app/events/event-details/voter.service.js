@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var rxjs_1 = require('rxjs');
+var Rx_1 = require('rxjs/Rx');
 var VoterService = (function () {
     function VoterService(_http) {
         this._http = _http;
@@ -34,14 +34,13 @@ var VoterService = (function () {
         return session.voters.some(function (voter) { return voter === voterName; });
     };
     VoterService.prototype._handleError = function (error) {
-        return rxjs_1.Observable.throw(error.statusText);
+        return Rx_1.Observable.throw(error.statusText);
     };
     VoterService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [http_1.Http])
     ], VoterService);
     return VoterService;
-    var _a;
 }());
 exports.VoterService = VoterService;
 //# sourceMappingURL=voter.service.js.map

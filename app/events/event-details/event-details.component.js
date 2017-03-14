@@ -51,10 +51,9 @@ var EventDetailsComponent = (function () {
                 '.a {cursor: pointer;}'
             ]
         }), 
-        __metadata('design:paramtypes', [event_service_1.EventService, (typeof (_a = typeof router_1.ActivatedRoute !== 'undefined' && router_1.ActivatedRoute) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [event_service_1.EventService, router_1.ActivatedRoute])
     ], EventDetailsComponent);
     return EventDetailsComponent;
-    var _a;
 }());
 exports.EventDetailsComponent = EventDetailsComponent;
 //# sourceMappingURL=event-details.component.js.map

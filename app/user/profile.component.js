@@ -31,9 +31,12 @@ var ProfileComponent = (function () {
         });
     };
     ProfileComponent.prototype.saveProfile = function (formValues) {
+        var _this = this;
         if (this.profileForm.valid) {
-            this._authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-            this._toastr.success('Profile Saved');
+            this._authService.updateCurrentUser(formValues.firstName, formValues.lastName)
+                .subscribe(function () {
+                _this._toastr.success('Profile Saved');
+            });
         }
     };
     ProfileComponent.prototype.validateFirstName = function () {
@@ -45,16 +48,21 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.cancel = function () {
         this._routes.navigate(['events']);
     };
+    ProfileComponent.prototype.logout = function () {
+        var _this = this;
+        this._authService.logout().subscribe(function () {
+            _this._routes.navigate(['/use/login']);
+        });
+    };
     ProfileComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/user/profile.component.html',
             styles: ["\n    em {\n      float: right;\n      color: #e05c65;\n      padding-left: 10px;\n    }\n    .error input {background-color: #e3c3c5;}\n    .error ::-webkit-input-placeholder {color: #999;}\n    .error ::-moz-placeholder {color: #999;}\n    .error :-moz-placeholder {color: #999;}\n    .error :-ms-input-placeholder {color: #999;}\n  "]
         }),
         __param(1, core_1.Inject(toastr_service_1.TOASTR_TOKEN)), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService, Object, (typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, Object, router_1.Router])
     ], ProfileComponent);
     return ProfileComponent;
-    var _a;
 }());
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map

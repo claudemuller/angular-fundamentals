@@ -59,6 +59,15 @@ export class AuthService {
       .subscribe();
   }
 
+  public logout(): Observable {
+    this.currentUser = undefined;
+
+    const headers = new Headers({'Content-Type': 'appication/json'});
+    const options = new RequestOptions({headers: headers});
+
+    return this._http.post('/api/logout', JSON.stringify({}), options);
+  }
+
   private _handleError(error: Response): Observable {
     return Observable.throw(error.statusText);
   }
