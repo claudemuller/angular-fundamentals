@@ -1,5 +1,5 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SessionListComponent } from './session-list.component';
 import { UpvoteComponent } from './upvote.component';
 import { DurationPipe } from '../shared/duration.pipe';
@@ -8,6 +8,14 @@ import { VoterService } from './voter.service';
 import { ISession } from '../shared/event.model';
 import { By } from '@angular/platform-browser';
 import { CollapsibleWellComponent } from '../../common/collapsible-well.component';
+
+// For shallow integrated testing...
+// @Component({
+//
+// })
+// export class FakeComponent {
+//
+// }
 
 describe('SessionListComponent', () => {
   let fixture: ComponentFixture<SessionListComponent>,
@@ -36,7 +44,9 @@ describe('SessionListComponent', () => {
         {provide: AuthService, useValue: mockAuthService},
         {provide: VoterService, useValue: mockVoterService}
       ],
-      schemas: []
+      schemas: [
+        //NO_ERRORS_SCHEMA // Don't worry about above components which are dependencies
+      ]
     }).compileComponents(); // If you don't use webpack
   }));
 

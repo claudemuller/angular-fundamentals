@@ -5,7 +5,15 @@ var upvote_component_1 = require('./upvote.component');
 var duration_pipe_1 = require('../shared/duration.pipe');
 var auth_service_1 = require('../../user/auth.service');
 var voter_service_1 = require('./voter.service');
+var platform_browser_1 = require('@angular/platform-browser');
 var collapsible_well_component_1 = require('../../common/collapsible-well.component');
+// For shallow integrated testing...
+// @Component({
+//
+// })
+// export class FakeComponent {
+//
+// }
 describe('SessionListComponent', function () {
     var fixture, component, element, debugEl;
     beforeEach(testing_1.async(function () {
@@ -52,8 +60,8 @@ describe('SessionListComponent', function () {
             component.eventId = 4;
             component.ngOnChanges();
             fixture.detectChanges();
-            expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
-            // expect(debugEl.query(By.css('[well-title]')).nativeElement.textContent).toContain('Session 1');
+            // expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
+            expect(debugEl.query(platform_browser_1.By.css('[well-title]')).nativeElement.textContent).toContain('Session 1');
         });
     });
 });
